@@ -665,3 +665,34 @@ DEPRECATION WARNING: `#timestamps` was called without specifying an option for `
   [1m[36m (11.1ms)[0m  [1mcommit transaction[0m
   [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
   [1m[36mChef Load (1.7ms)[0m  [1mSELECT "chefs".* FROM "chefs"[0m
+  [1m[36mRecipe Load (2.2ms)[0m  [1mSELECT "recipes".* FROM "recipes"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "recipes" ("summary", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["summary", "This on some spicy shit."], ["created_at", "2017-02-19 21:45:09.140293"], ["updated_at", "2017-02-19 21:45:09.140293"]]
+  [1m[35m (11.5ms)[0m  commit transaction
+  [1m[36mRecipe Load (0.3ms)[0m  [1mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mRecipe Load (0.1ms)[0m  [1mSELECT  "recipes".* FROM "recipes"  ORDER BY "recipes"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM "recipes" WHERE "recipes"."id" = ?[0m  [["id", 1]]
+  [1m[35m (9.2ms)[0m  commit transaction
+  [1m[36mRecipe Load (0.2ms)[0m  [1mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mRecipe Load (2.4ms)[0m  [1mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddChefIdToRecipes (20170221020152)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (1.7ms)[0m  [1mALTER TABLE "recipes" ADD "chef_id" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170221020152"]]
+  [1m[36m (10.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mChef Load (0.1ms)[0m  [1mSELECT  "chefs".* FROM "chefs"  ORDER BY "chefs"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mChef Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "chefs" WHERE LOWER("chefs"."email") = LOWER('bob@example.com') LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "chefs" ("chefname", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["chefname", "bob"], ["email", "bob@example.com"], ["created_at", "2017-02-21 02:10:43.581128"], ["updated_at", "2017-02-21 02:10:43.581128"]]
+  [1m[36m (11.2ms)[0m  [1mcommit transaction[0m
+  [1m[35mRecipe Load (0.2ms)[0m  SELECT "recipes".* FROM "recipes"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "recipes" ("name", "summary", "description", "chef_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "Wolf meat  Stew"], ["summary", "Great seasoned wolf meat that's good for your health."], ["description", "add wolf meat potatoes and frost miriam and salt and garlic and simmer till done."], ["chef_id", 1], ["created_at", "2017-02-21 02:17:14.089438"], ["updated_at", "2017-02-21 02:17:14.089438"]]
+  [1m[36m (11.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "recipes" ("name", "summary", "description", "chef_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "pussy pie"], ["summary", "get some tacos and snatch"], ["description", "Get all of the ingredients together and cook them well for 20 minutes"], ["chef_id", 1], ["created_at", "2017-02-21 02:20:42.857971"], ["updated_at", "2017-02-21 02:20:42.857971"]]
+  [1m[35m (10.4ms)[0m  commit transaction
+  [1m[36mRecipe Load (0.3ms)[0m  [1mSELECT "recipes".* FROM "recipes"[0m
